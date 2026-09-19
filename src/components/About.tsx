@@ -1,0 +1,5 @@
+import { Reveal, SectionLabel } from './Shared'
+
+export default function About() {
+  return <section id="about" className="section about-section" aria-labelledby="about-title"><div className="container"><Reveal className="about-grid"><div><SectionLabel number="02">ABOUT</SectionLabel><h2 id="about-title">A little{' '}<br />about me<span className="accent">.</span></h2></div><div className="about-copy"><p>I'm Theejay Tagama, a Computer Science student aspiring to become an AI engineer. My focus is on AI and automation: connecting tools, building workflows, and exploring how intelligent systems can solve practical problems. I learn through hands-on projects, including automating academic tasks with n8n and the Google Calendar API.</p><p className="eyebrow interest-label">WHAT SPARKS MY CURIOSITY</p><ul className="interests">{['AI Engineering', 'Workflow Automation', 'API Integration', 'Data & Systems', 'Software Development'].map(item => <li key={item}>{item}</li>)}</ul></div></Reveal></div></section>
+}
