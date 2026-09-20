@@ -73,24 +73,15 @@
   .hero .social-links { margin-top: 22px; }
   .social-links .text-link { color: var(--color-muted); font-size: 13px; }
   .pending-label { font-size: 9px; color: var(--color-muted); }
-  .portrait { --pointer-x: 50%; --pointer-y: 50%; position: relative; isolation: isolate; padding: 10%; }
-  .portrait::before { content: ''; position: absolute; z-index: -2; inset: 7%; border-radius: 50%; background: radial-gradient(circle, rgb(0 113 227 / 17%), transparent 66%); filter: blur(12px); transition: transform 700ms cubic-bezier(.22,1,.36,1), opacity 400ms; }
-  .portrait-frame { position: relative; z-index: 2; overflow: hidden; aspect-ratio: 1; border-radius: 50%; background: #101114; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 12%), 0 28px 70px rgb(0 0 0 / 17%); }
-  .portrait-frame::before { content: ''; position: absolute; z-index: 3; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgb(5 6 8 / 40%), transparent 45%, rgb(5 6 8 / 22%)), repeating-linear-gradient(0deg, transparent 0 4px, rgb(255 255 255 / 2%) 5px); mix-blend-mode: screen; }
-  .portrait-frame > img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; filter: grayscale(1) contrast(1.15) brightness(.58); transform: scale(1.08); transition: filter 650ms cubic-bezier(.22,1,.36,1), transform 850ms cubic-bezier(.22,1,.36,1); }
-  .portrait-shade { position: absolute; z-index: 2; inset: 0; pointer-events: none; background: radial-gradient(circle 88px at var(--pointer-x) var(--pointer-y), transparent, rgb(3 5 8 / 36%) 145px, rgb(3 5 8 / 77%) 78%); transition: background 120ms linear; }
-  .portrait-reticle { position: absolute; z-index: 4; left: var(--pointer-x); top: var(--pointer-y); width: 76px; height: 76px; translate: -50% -50%; border: 1px solid rgb(118 188 255 / 58%); border-radius: 50%; opacity: 0; pointer-events: none; transition: opacity 250ms; }
-  .portrait-reticle::before, .portrait-reticle::after { content: ''; position: absolute; background: rgb(118 188 255 / 72%); }
-  .portrait-reticle::before { width: 16px; height: 1px; left: calc(50% - 8px); top: 50%; }
-  .portrait-reticle::after { width: 1px; height: 16px; left: 50%; top: calc(50% - 8px); }
-  .portrait-status { position: absolute; z-index: 4; left: 10%; bottom: 9%; display: flex; align-items: center; gap: 7px; color: rgb(255 255 255 / 70%); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; letter-spacing: .1em; }
+  .portrait { position: relative; isolation: isolate; }
+  .portrait::before { content: ''; position: absolute; z-index: -1; inset: 8%; border-radius: 46%; background: radial-gradient(circle, rgb(0 113 227 / 13%), transparent 69%); filter: blur(22px); transition: transform 700ms cubic-bezier(.22,1,.36,1); }
+  .binary-portrait { position: relative; width: 100%; aspect-ratio: 1; }
+  .binary-portrait::before { content: ''; position: absolute; z-index: -1; inset: 17%; border-radius: 50%; background: #f0f0f2; box-shadow: inset 0 0 0 1px rgb(0 0 0 / 4%), 0 24px 70px rgb(0 0 0 / 8%); }
+  .binary-portrait canvas { width: 100%; height: 100%; display: block; cursor: crosshair; }
+  .portrait-source { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); opacity: 0; pointer-events: none; }
+  .portrait-status { position: absolute; z-index: 2; left: 15%; bottom: 12%; display: flex; align-items: center; gap: 7px; color: rgb(29 29 31 / 52%); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; letter-spacing: .1em; pointer-events: none; }
   .portrait-status i { width: 5px; height: 5px; border-radius: 50%; background: #5ac8fa; box-shadow: 0 0 12px #5ac8fa; }
-  .code-orbit { position: absolute; z-index: 1; inset: 0; pointer-events: none; }
-  .code-orbit > span { --angle: calc(var(--index) * 45deg); position: absolute; left: 50%; top: 50%; display: grid; place-items: center; min-width: 38px; height: 28px; padding-inline: 8px; border: 1px solid rgb(0 113 227 / 20%); border-radius: 7px; background: rgb(255 255 255 / 78%); box-shadow: 0 10px 30px rgb(0 0 0 / 8%); color: #5f6368; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; opacity: .18; transform: rotate(var(--angle)) translateX(150px) rotate(calc(var(--angle) * -1)) scale(.76); transition: opacity 420ms, transform 750ms cubic-bezier(.22,1,.36,1), border-color 420ms; backdrop-filter: blur(12px); }
-  .portrait:hover::before { opacity: 1; transform: scale(1.1); }
-  .portrait:hover .portrait-frame > img { filter: grayscale(.75) contrast(1.12) brightness(.68); transform: scale(1.04); }
-  .portrait:hover .portrait-reticle { opacity: 1; }
-  .portrait:hover .code-orbit > span { opacity: 1; border-color: rgb(0 113 227 / 38%); transform: rotate(var(--angle)) translateX(clamp(170px, 20vw, 245px)) rotate(calc(var(--angle) * -1)) scale(1); animation: orbit-pulse 2.8s calc(var(--index) * -220ms) ease-in-out infinite; }
+  .portrait:hover::before { transform: scale(1.12); }
   .portrait-placeholder { width: 100%; aspect-ratio: 1; display: grid; place-items: center; border-radius: 44px; background: #e8e8ed; }
   .portrait figcaption { display: none; }
   .portrait-monogram { font-size: 10rem; font-weight: 700; letter-spacing: -.09em; }
@@ -205,7 +196,6 @@
 
 @keyframes drift { 0%,100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
 @keyframes backdrop-in { from { opacity: 0; } to { opacity: 1; } }
-@keyframes orbit-pulse { 0%,100% { margin: 0; } 50% { margin-top: -9px; } }
 
 @media (max-width: 980px) {
   .container, #work, .about-section > .container { width: calc(100% - 48px); }
@@ -233,8 +223,7 @@
   .hero h1 { font-size: clamp(4.8rem, 23vw, 7rem); }
   .hero-role { margin-top: 25px; }
   .hero-description { font-size: 15px; }
-  .portrait { width: min(100%, 470px); justify-self: center; padding: 12%; }
-  .portrait:hover .code-orbit > span { transform: rotate(var(--angle)) translateX(clamp(145px, 36vw, 215px)) rotate(calc(var(--angle) * -1)) scale(.92); }
+  .portrait { width: min(100%, 470px); justify-self: center; }
   .hero-bottom { margin-top: 24px; }
   .hero-bottom .eyebrow { display: none; }
   .hero-bottom { justify-content: flex-end; }
@@ -265,8 +254,7 @@
 }
 
 @media (hover: none) {
-  .portrait .code-orbit > span { opacity: .7; transform: rotate(var(--angle)) translateX(clamp(140px, 35vw, 205px)) rotate(calc(var(--angle) * -1)) scale(.9); }
-  .portrait-reticle { display: none; }
+  .binary-portrait canvas { cursor: default; }
 }
 
 @media (hover: none) {
