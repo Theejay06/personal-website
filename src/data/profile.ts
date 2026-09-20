@@ -3,7 +3,7 @@ export const profile: { github: string | null; linkedin: string | null; email: s
   github: 'https://github.com/Theejay06',
   linkedin: 'https://www.linkedin.com/in/theejay-tagama-810851366',
   email: 'th.tagama@gmail.com',
-  portrait: '/images/theejay-tagama-cutout.png',
+  portrait: `${import.meta.env.BASE_URL}images/theejay-tagama-cutout.png`,
 }
 
 export const navigation = [

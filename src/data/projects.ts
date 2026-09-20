@@ -51,7 +51,7 @@ export const projects: Project[] = [
     technologies: ['HTML', 'CSS', 'JavaScript'],
     role: 'Developer',
     url: 'https://verif-ai-website-brown.vercel.app/',
-    image: '/images/verifai-preview.png',
+    image: `${import.meta.env.BASE_URL}images/verifai-preview.png`,
     imageAlt: 'VerifAI homepage with the heading Can You Tell What’s Real? and links to AI media literacy topics.',
   },
   {
@@ -69,7 +69,7 @@ export const projects: Project[] = [
     technologies: ['HTML', 'CSS'],
     url: 'https://theejay06.github.io/PersonalPage/',
     github: 'https://github.com/Theejay06/PersonalPage',
-    image: '/images/personal-page-preview.png',
+    image: `${import.meta.env.BASE_URL}images/personal-page-preview.png`,
     imageAlt: 'Personal Page homepage with Theejay Tagama’s name over a travel photograph and navigation to biography, galleries, and interests.',
   },
 ]
