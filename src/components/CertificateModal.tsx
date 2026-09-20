@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { motion, useReducedMotion } from 'motion/react'
 import { FileImage, X } from 'lucide-react'
 import type { Certificate } from '../data/certificates'
 import { ExternalLink } from './Shared'
@@ -6,6 +7,7 @@ import { ExternalLink } from './Shared'
 export default function CertificateModal({ certificate, onClose }: { certificate?: Certificate; onClose: () => void }) {
   const dialog = useRef<HTMLDialogElement>(null)
   const close = useRef<HTMLButtonElement>(null)
+  const reduced = useReducedMotion()
   useEffect(() => {
     const element = dialog.current
     const previousFocus = document.activeElement as HTMLElement | null
@@ -27,13 +29,13 @@ export default function CertificateModal({ certificate, onClose }: { certificate
     if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus() }
     else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus() }
   }} onCancel={event => { event.preventDefault(); onClose() }} onClick={event => { if (event.target === event.currentTarget) { const rect = event.currentTarget.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) onClose() } }}>
-    <div className="modal-inner"><button ref={close} className="modal-close" onClick={onClose} aria-label="Close certificate preview"><X size={22} /></button><p className="eyebrow">{certificate ? `CERTIFICATE${certificate.type ? ` OF ${certificate.type.toUpperCase()}` : ''}` : 'PLACEHOLDER PREVIEW'}</p>
+    <motion.div className="modal-inner" initial={reduced ? false : { opacity: 0, y: 24, scale: 0.985 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}><button ref={close} className="modal-close" onClick={onClose} aria-label="Close certificate preview"><X size={20} /></button><p className="modal-kicker">{certificate ? `Certificate of ${certificate.type || 'recognition'}` : 'Certificate preview'}</p>
       <div className="modal-image">{certificate ? <img src={certificate.image} alt={certificate.imageAlt} /> : <div className="certificate-placeholder"><FileImage size={44} strokeWidth={1} aria-hidden="true" /><span>Your certificate belongs here.</span><p>No certificate has been added yet.</p></div>}</div>
       <h2 id="certificate-modal-title">{certificate?.title || 'Certifications, coming soon.'}</h2><p id="certificate-modal-description">{certificate ? `${certificate.organization} · ${certificate.date}` : 'This is a preview placeholder, not an earned credential.'}</p>
       {certificate?.credentialId && <p className="credential-id">Credential ID: {certificate.credentialId}</p>}
       {certificate?.description && <p>{certificate.description}</p>}
       {certificate?.documentUrl && <ExternalLink href={certificate.documentUrl}>View original certificate</ExternalLink>}
       {certificate?.credentialUrl && <ExternalLink href={certificate.credentialUrl}>View credential</ExternalLink>}
-    </div>
+    </motion.div>
   </dialog>
 }
