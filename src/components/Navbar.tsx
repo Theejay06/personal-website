@@ -33,7 +33,7 @@ export default function Navbar() {
     const outside = (event: PointerEvent) => {
       if (!nav.current?.contains(event.target as Node) && !toggle.current?.contains(event.target as Node)) setOpen(false)
     }
-    const media = window.matchMedia('(min-width: 1024px)')
+    const media = window.matchMedia('(min-width: 981px)')
     const resize = () => { if (media.matches) setOpen(false) }
     document.addEventListener('keydown', dismiss)
     document.addEventListener('pointerdown', outside)

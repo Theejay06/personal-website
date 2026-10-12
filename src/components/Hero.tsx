@@ -20,6 +20,8 @@ function BinaryPortrait({ src }: { src: string }) {
     if (!sampleContext) return
     const pixels: Pixel[] = []
     let frame = 0
+    let visible = false
+    let disposed = false
     let hovering = false
     let pointerX = 0.5
     let pointerY = 0.5
@@ -56,6 +58,7 @@ function BinaryPortrait({ src }: { src: string }) {
     canvas.addEventListener('pointerleave', leave)
 
     const draw = (time: number) => {
+      if (!visible || document.hidden || disposed) { frame = 0; return }
       if (!width || !height || !image.complete) { frame = requestAnimationFrame(draw); return }
       const dt = Math.min((time - last) / 16.67 || 1, 2)
       last = time
@@ -124,10 +127,18 @@ function BinaryPortrait({ src }: { src: string }) {
       }
       frame = requestAnimationFrame(draw)
     }
+    const resume = () => { if (visible && !document.hidden && image.complete && !disposed && !frame) frame = requestAnimationFrame(draw) }
+    const intersection = new IntersectionObserver(entries => { visible = entries[0]?.isIntersecting ?? false; if (visible) resume(); else { cancelAnimationFrame(frame); frame = 0 } }, { threshold: 0.01 })
+    intersection.observe(canvas)
+    const visibility = () => { if (document.hidden) { cancelAnimationFrame(frame); frame = 0 } else resume() }
+    document.addEventListener('visibilitychange', visibility)
+    image.onload = resume
     image.src = src
-    image.onload = () => { frame = requestAnimationFrame(draw) }
     return () => {
+      disposed = true
       cancelAnimationFrame(frame)
+      intersection.disconnect()
+      document.removeEventListener('visibilitychange', visibility)
       observer.disconnect()
       canvas.removeEventListener('pointermove', move)
       canvas.removeEventListener('pointerenter', enter)
@@ -135,7 +146,7 @@ function BinaryPortrait({ src }: { src: string }) {
     }
   }, [src])
 
-  return <div className="binary-portrait"><canvas ref={canvasRef} aria-hidden="true" /><img className="portrait-source" src={src} alt="Theejay Tagama" fetchPriority="high" /><span className="portrait-status" aria-hidden="true"><i /> BINARY PORTRAIT / INTERACTIVE</span></div>
+  return <div className="binary-portrait"><canvas ref={canvasRef} aria-hidden="true" /><img className="portrait-source" src={src} alt="Portrait of Theejay Tagama" fetchPriority="high" /><span className="portrait-status" aria-hidden="true"><i /> BINARY PORTRAIT / INTERACTIVE</span></div>
 }
 
 export default function Hero() {
@@ -146,8 +157,8 @@ export default function Hero() {
       <div className="hero-copy">
         <motion.p {...entry(0)} className="eyebrow intro-label"><span aria-hidden="true" />A PERSONAL PORTFOLIO</motion.p>
         <motion.h1 {...entry(0.08)} id="hero-title">Theejay<br />Tagama<span className="accent">.</span></motion.h1>
-        <motion.p {...entry(0.16)} className="hero-role">Computer Science Student<br /><span>& Aspiring AI Engineer</span></motion.p>
-        <motion.p {...entry(0.24)} className="hero-description">I explore AI, build automation workflows, and turn everyday problems into practical solutions.</motion.p>
+        <motion.p {...entry(0.16)} className="hero-role">I build automation tools<br /><span>& practical AI projects</span></motion.p>
+        <motion.p {...entry(0.24)} className="hero-description">I turn repetitive tasks into automated workflows and build web experiences that make technology easier to use. Explore my work in API integrations, AI education, and Python learning.</motion.p>
         <motion.div {...entry(0.32)} className="hero-actions"><a href="#work" className="button">View my work <ArrowRight size={17} /></a><a href="#contact" className="text-link">Get in touch <ArrowRight size={17} /></a></motion.div>
         <motion.div {...entry(0.4)}><SocialLinks /><a className="text-link resume-link" href={`${import.meta.env.BASE_URL}documents/theejay-tagama-resume.pdf`} download>Download resume <ArrowDown size={15} aria-hidden="true" /></a></motion.div>
       </div>

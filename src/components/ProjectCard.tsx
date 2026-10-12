@@ -16,6 +16,7 @@ export default function ProjectCard({ project }: { project: Project }) {
     <div className="project-content">
       <div className="project-topline"><span>Project {project.id}</span>{project.status && <span>{project.status}</span>}</div>
       <h3 id={`project-${project.id}`}>{project.title}</h3>
+      {project.role && <p className="project-role"><strong>My role:</strong> {project.role}</p>}
       {project.description && <p className="project-description">{project.description}</p>}
       <div className="tech-list">{project.technologies.map(tech => <span key={tech}>{tech}</span>)}</div>
       <div className="project-actions">

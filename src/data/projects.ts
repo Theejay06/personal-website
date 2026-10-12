@@ -17,13 +17,14 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: '01', title: 'Canvas to Google Calendar', shortTitle: 'Academic task automation',
-    description: 'A local n8n workflow that syncs quizzes and subject deadlines from UE Canvas to Google Calendar.',
+    description: 'A locally run n8n automation connecting UE Canvas coursework to Google Calendar, designed to make upcoming quizzes and deadlines easier to track.',
     role: 'Developer', technologies: ['n8n', 'Google Calendar API', 'API Integration'], status: 'Runs locally',
     overview: ['UE Canvas', 'n8n workflow', 'Google Calendar'],
     details: [
       { heading: 'The problem', text: 'Keeping track of quizzes and deadlines across enrolled subjects required repeated manual checks in UE Canvas.' },
-      { heading: 'What I built', text: 'An automation workflow using n8n and the Google Calendar API to sync academic tasks through scheduled API triggers.' },
-      { heading: 'Result', text: 'Academic deadlines are brought into Google Calendar, reducing the need to check Canvas manually. The workflow runs locally.' },
+      { heading: 'Approach', text: 'I connected Canvas course information to an n8n workflow and mapped the relevant assignment and quiz dates into Google Calendar events using API integration and scheduled execution.' },
+      { heading: 'My contribution', text: 'I designed the workflow, configured the integration steps, and tested the local process against my academic scheduling needs.' },
+      { heading: 'Outcome and limitations', text: 'The workflow brings academic deadlines into Google Calendar and reduces repetitive manual checking. It currently runs locally; there is no publicly hosted demo or source repository linked here.' },
       { heading: 'What I learned', text: 'Practical experience connecting APIs, scheduling automated workflows, and building productivity tools.' },
     ],
   },

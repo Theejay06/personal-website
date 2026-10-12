@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Open the localhost URL printed by Vite. No deployment or push is configured.
+Open the localhost URL printed by Vite. Pushing to `main` triggers the GitHub Actions workflow in `.github/workflows/static.yml`, which validates, builds, and deploys the site to GitHub Pages at https://theejay06.github.io/personal-website/.
 
 ## Content to replace
 
@@ -34,6 +34,10 @@ npm run lint
 npm run test:e2e
 ```
 
-Browser tests use locally installed Microsoft Edge through Playwright. If Edge is unavailable, install a Playwright browser and adjust `channel` in `playwright.config.ts`.
+Browser tests use locally installed Microsoft Edge through Playwright. The deployment workflow installs the Playwright browser in CI and runs lint, typecheck, and end-to-end tests before deployment. If Edge is unavailable, install a Playwright browser and adjust `channel` in `playwright.config.ts`.
 
 Implementation references: [Tailwind Vite integration](https://tailwindcss.com/docs/installation/using-vite), [Motion accessibility](https://motion.dev/docs/react-accessibility). Components are purpose-built; no third-party visual template is used.
+
+## Portfolio maintenance
+
+Project status and roles are intentionally visible. The Canvas workflow runs locally, and CodeBreak is in development; neither is presented as a public live demo. Add authentic CodeBreak screenshots only after the team approves sharing them. Source links are shown only for repositories that have been verified and are intended to be public. Social metadata uses the existing portrait; replace it with a dedicated 1200×630 social card when available. A custom domain is optional and should only be configured after ownership and DNS are confirmed.
