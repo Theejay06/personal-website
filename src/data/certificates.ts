@@ -5,7 +5,7 @@ export interface Certificate {
   date: string
   image: string
   imageAlt: string
-  type?: 'Participation' | 'Appreciation' | 'Membership'
+  type?: 'Participation' | 'Appreciation' | 'Membership' | 'Completion'
   description?: string
   documentUrl?: string
   credentialId?: string
@@ -15,6 +15,31 @@ export interface Certificate {
 // Details transcribed from the supplied certificates and accompanying emails.
 // documentUrl opens the original document, not an external verification service.
 export const certificates: Certificate[] = [
+  {
+    id: 'codechum-information-management',
+    title: 'Information Management',
+    organization: 'CodeChum · UE',
+    date: 'November 19, 2025',
+    type: 'Completion',
+    description: 'Completed Information Management (CIM 1101 CSAC 2025 1 v2), earning 1166 out of 1280 points.',
+    image: `${import.meta.env.BASE_URL}certificates/codechum-information-management.svg`,
+    imageAlt: 'Text summary of CodeChum Information Management certificate. Open the credential link for the original.',
+    documentUrl: 'https://ue.codechum.com/certificates/16063',
+    credentialUrl: 'https://ue.codechum.com/certificates/16063',
+  },
+  {
+    id: 'codechum-cpp-oop',
+    title: 'C++ Object-Oriented Programming',
+    organization: 'CodeChum · UE',
+    date: 'October 31, 2025',
+    type: 'Completion',
+    description: 'Completed C++ Object-Oriented Programming (CCS 2102 - CSAC - 1ST 2025-2026), earning 1279 out of 1290 points.',
+    image: `${import.meta.env.BASE_URL}certificates/codechum-cpp-oop.svg`,
+    imageAlt: 'Text summary of CodeChum C++ Object-Oriented Programming certificate. Open the credential link for the original.',
+    documentUrl: 'https://ue.codechum.com/certificates/14747',
+    credentialUrl: 'https://ue.codechum.com/certificates/14747',
+  },
+
   {
     id: 'thesis-far-from-home',
     title: 'Thesis: Far From Home',
