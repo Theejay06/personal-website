@@ -157,14 +157,14 @@ export default function Hero() {
       <div className="hero-copy">
         <motion.p {...entry(0)} className="eyebrow intro-label"><span aria-hidden="true" />A PERSONAL PORTFOLIO</motion.p>
         <motion.h1 {...entry(0.08)} id="hero-title">Theejay<br />Tagama<span className="accent">.</span></motion.h1>
-        <motion.p {...entry(0.16)} className="hero-role">I build automation tools<br /><span>& practical AI projects</span></motion.p>
-        <motion.p {...entry(0.24)} className="hero-description">I turn repetitive tasks into automated workflows and build web experiences that make technology easier to use. Explore my work in API integrations, AI education, and Python learning.</motion.p>
+        <motion.p {...entry(0.16)} className="hero-role">Computer Science Student<br /><span>Building software that solves real problems</span></motion.p>
+        <motion.p {...entry(0.24)} className="hero-description">I build practical applications, explore algorithms, and turn ideas into working systems—from academic automation workflows to interactive Python learning experiences.</motion.p>
         <motion.div {...entry(0.32)} className="hero-actions"><a href="#work" className="button">View my work <ArrowRight size={17} /></a><a href="#contact" className="text-link">Get in touch <ArrowRight size={17} /></a></motion.div>
         <motion.div {...entry(0.4)}><SocialLinks /><a className="text-link resume-link" href={`${import.meta.env.BASE_URL}documents/theejay-tagama-resume.pdf`} download>Download resume <ArrowDown size={15} aria-hidden="true" /></a></motion.div>
       </div>
       <motion.figure {...entry(0.4)} className="portrait">
         {profile.portrait ? <BinaryPortrait src={profile.portrait} /> : <div className="portrait-placeholder"><span className="eyebrow portrait-top">THE PERSON BEHIND THE WORK</span><span className="portrait-monogram" aria-hidden="true">Tt<span>.</span></span><div className="portrait-note"><span className="small-line" aria-hidden="true" /><p>Portrait coming soon<span>A space for my photograph.</span></p></div></div>}
-        <figcaption><span>THEEJAY TAGAMA</span><span>AI & AUTOMATION</span></figcaption>
+        <figcaption><span>THEEJAY TAGAMA</span><span>SOFTWARE · AI · AUTOMATION</span></figcaption>
       </motion.figure>
     </div>
     <div className="hero-bottom"><span className="eyebrow">LEARNING. BUILDING. EXPLORING.</span><a href="#work" className="scroll-link">Scroll to explore <ArrowDown size={15} aria-hidden="true" /></a></div>

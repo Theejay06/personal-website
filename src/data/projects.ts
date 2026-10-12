@@ -11,6 +11,8 @@ export interface Project {
   github?: string
   status?: string
   overview?: string[]
+  engineering?: string[]
+  evidenceNote?: string
   details?: { heading: string; text: string }[]
 }
 
@@ -20,6 +22,8 @@ export const projects: Project[] = [
     description: 'A locally run n8n automation connecting UE Canvas coursework to Google Calendar, designed to make upcoming quizzes and deadlines easier to track.',
     role: 'Developer', technologies: ['n8n', 'Google Calendar API', 'API Integration'], status: 'Runs locally',
     overview: ['UE Canvas', 'n8n workflow', 'Google Calendar'],
+    engineering: ['Integration: Canvas coursework data and Google Calendar API', 'Processing: n8n workflow maps academic dates into calendar events', 'Deployment: local workflow, not a hosted public service'],
+    evidenceNote: 'A public workflow export and measured reliability results are not yet available.',
     details: [
       { heading: 'The problem', text: 'Keeping track of quizzes and deadlines across enrolled subjects required repeated manual checks in UE Canvas.' },
       { heading: 'Approach', text: 'I connected Canvas course information to an n8n workflow and mapped the relevant assignment and quiz dates into Google Calendar events using API integration and scheduled execution.' },
@@ -31,7 +35,9 @@ export const projects: Project[] = [
   {
     id: '02', title: 'CodeBreak', shortTitle: 'CodeBreak',
     description: 'An educational dungeon game being designed to teach Python programming concepts through interactive gameplay.',
-    role: 'Team Leader', technologies: ['Python', 'HTML', 'CSS'], status: 'In development / Design phase',
+    role: 'Team Leader · Team of five', technologies: ['Python', 'HTML', 'CSS'], status: 'In development / Design phase',
+    engineering: ['Learning experience: dungeon-style Python programming challenges', 'Project coordination: agile milestones and work breakdown structure', 'Next evidence: actual gameplay, architecture, test cases and repository when shareable'],
+    evidenceNote: 'Development project: features and gameplay should not be treated as a finished public demo.',
     details: [
       { heading: 'The idea', text: 'Use a dungeon-based game to make learning Python programming concepts interactive.' },
       { heading: 'My contribution', text: 'Leading a team of five, defining the technology stack, and applying agile planning and a Work Breakdown Structure to organize milestones and deliverables.' },
@@ -51,6 +57,7 @@ export const projects: Project[] = [
     description: 'A web-based educational project focused on helping users recognize signs of AI-generated media and understand manipulated content.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
     role: 'Developer',
+    engineering: ['Frontend: HTML, CSS and JavaScript', 'Information architecture: organized educational content across the site', 'Verification: public live website available to explore'],
     url: 'https://verif-ai-website-brown.vercel.app/',
     image: `${import.meta.env.BASE_URL}images/verifai-preview.png`,
     imageAlt: 'VerifAI homepage with the heading Can You Tell What’s Real? and links to AI media literacy topics.',
@@ -67,6 +74,7 @@ export const projects: Project[] = [
     shortTitle: 'Personal Page',
     description: 'A personal website sharing my biography, interests, and photo galleries.',
     role: 'Developer',
+    engineering: ['Frontend: HTML and CSS', 'Structure: biography, interests and gallery pages', 'Verification: live website and public source repository'],
     technologies: ['HTML', 'CSS'],
     url: 'https://theejay06.github.io/PersonalPage/',
     github: 'https://github.com/Theejay06/PersonalPage',

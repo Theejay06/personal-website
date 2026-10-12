@@ -41,3 +41,9 @@ Implementation references: [Tailwind Vite integration](https://tailwindcss.com/d
 ## Portfolio maintenance
 
 Project status and roles are intentionally visible. The Canvas workflow runs locally, and CodeBreak is in development; neither is presented as a public live demo. Add authentic CodeBreak screenshots only after the team approves sharing them. Source links are shown only for repositories that have been verified and are intended to be public. Social metadata uses the existing portrait; replace it with a dedicated 1200×630 social card when available. A custom domain is optional and should only be configured after ownership and DNS are confirmed.
+
+## Engineering evidence
+
+The project cards include a **Behind the code** summary covering architecture, implementation, and current evidence. These are descriptions of existing work, not performance benchmarks or claims of completed features. Update `engineering` and `evidenceNote` in `src/data/projects.ts` when source code, diagrams, tests, or authentic project screenshots become available.
+
+Potential future projects (not claimed as completed): an interactive shortest-path algorithm visualizer and a database-backed task API. Only publish them once there is a working implementation and tests.

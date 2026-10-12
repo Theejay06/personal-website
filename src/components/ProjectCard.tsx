@@ -18,6 +18,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       <h3 id={`project-${project.id}`}>{project.title}</h3>
       {project.role && <p className="project-role"><strong>My role:</strong> {project.role}</p>}
       {project.description && <p className="project-description">{project.description}</p>}
+      {project.engineering && <div className="engineering-summary"><h4>Behind the code</h4><ul>{project.engineering.map(item => <li key={item}>{item}</li>)}</ul>{project.evidenceNote && <p className="evidence-note">{project.evidenceNote}</p>}</div>}
       <div className="tech-list">{project.technologies.map(tech => <span key={tech}>{tech}</span>)}</div>
       <div className="project-actions">
         {(project.url || project.github) && <div className="project-links">{project.url && <ExternalLink href={project.url}>Live site</ExternalLink>}{project.github && <ExternalLink href={project.github}>Source</ExternalLink>}</div>}
