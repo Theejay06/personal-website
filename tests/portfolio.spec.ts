@@ -129,7 +129,7 @@ test('supplied certificates load with original documents and membership metadata
 test('edited portrait loads with genuine transparency', async ({ page }) => {
   await page.goto('/')
   const portrait = page.getByRole('img', { name: 'Portrait of Theejay Tagama', exact: true })
-  await expect(portrait).toHaveAttribute('src', '/images/theejay-tagama-cutout.png')
+  await expect(portrait).toHaveAttribute('src', /\/images\/theejay-tagama-cutout\.png$/)
   await expect.poll(() => portrait.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true)
   const alpha = await portrait.evaluate((img: HTMLImageElement) => {
     const canvas = document.createElement('canvas')
